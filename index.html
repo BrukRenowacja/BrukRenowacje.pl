@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EkoClean Ostrzeszów | Profesjonalne czyszczenie kostki brukowej</title>
+    <title>BrukRenowacje | Profesjonalne czyszczenie kostki brukowej</title>
     <meta name="description" content="Profesjonalne czyszczenie kostki brukowej w Ostrzeszowie i okolicy. Ekologiczne metody, najwyższa jakość usług.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -850,6 +850,45 @@
             text-align: center;
         }
 
+        /* Style dla przycisków social media */
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            margin: 10px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white !important;
+            text-decoration: none;
+            transition: all 0.3s;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            background: var(--secondary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-btn i {
+            font-size: 1.5rem;
+        }
+
+        .social-modal-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
@@ -894,7 +933,7 @@
     <div id="promotionContainer"></div>
 
     <header>
-        <h1>EkoClean Ostrzeszów</h1>
+        <h1>BrukRenowacje</h1>
         <p>Profesjonalne czyszczenie kostki brukowej i pojazdów</p>
     </header>
     
@@ -905,6 +944,7 @@
             <li><a href="#gallery">Galeria</a></li>
             <li><a href="#testimonials">Opinie</a></li>
             <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#" onclick="openSocialModal(); return false;">Social Media</a></li>
         </ul>
     </nav>
     
@@ -1128,7 +1168,7 @@
                 <div class="contact-card">
                     <i class="fas fa-envelope"></i>
                     <h3>Email</h3>
-                    <p><a href="mailto:biuro@ekoclean-ostrzeszow.pl">biuro@ekoclean-ostrzeszow.pl</a></p>
+                    <p><a href="mailto:biuro@brukrenowacje.pl">biuro@brukrenowacje.pl</a></p>
                     <p>Odpowiadamy w ciągu 24h</p>
                 </div>
                 
@@ -1151,7 +1191,7 @@
                 <p>Kompleksowe czyszczenie kostki brukowej z zastosowaniem ekologicznych środków czyszczących.</p>
             </div>
             <div class="modal-price">
-                25 zł/m<sup>2</sup> <small>(minimalne zamówienie 100 zł)</small>
+                Wycena indywidualna na miejscu
             </div>
             <div class="modal-images">
                 <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Przykład czyszczenia kostki">
@@ -1247,11 +1287,37 @@
             </div>
         </div>
     </div>
+
+    <!-- Nowy modal dla social media -->
+    <div id="socialModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('socialModal')">&times;</span>
+            <div class="social-modal-content">
+                <h3>Znajdź nas w mediach społecznościowych</h3>
+                <p>Śledź nasze najnowsze realizacje i promocje</p>
+                
+                <div class="social-buttons-container">
+                    <a href="https://tiktok.com/@twojprofil" target="_blank" class="social-btn" style="background: #000;">
+                        <i class="fab fa-tiktok"></i>
+                        TikTok
+                    </a>
+                    <a href="https://instagram.com/twojprofil" target="_blank" class="social-btn" style="background: #E1306C;">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
+                    <a href="https://facebook.com/twojprofil" target="_blank" class="social-btn" style="background: #1877F2;">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>EkoClean Ostrzeszów</h3>
+                <h3>BrukRenowacje</h3>
                 <p>Profesjonalne usługi czyszczenia kostki brukowej i pojazdów w Ostrzeszowie i okolicach.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1273,14 +1339,14 @@
                 <h3>Kontakt</h3>
                 <ul>
                     <li><i class="fas fa-phone"></i> +48 123 456 789</li>
-                    <li><i class="fas fa-envelope"></i> biuro@ekoclean-ostrzeszow.pl</li>
+                    <li><i class="fas fa-envelope"></i> biuro@brukrenowacje.pl</li>
                     <li><i class="fas fa-map-marker-alt"></i> Ostrzeszów i okolice</li>
                 </ul>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 EkoClean Ostrzeszów. Wszelkie prawa zastrzeżone.</p>
+            <p>&copy; 2023 BrukRenowacje. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
@@ -1314,31 +1380,7 @@
                     <label for="promotionTitle">Tytuł promocji:</label>
                     <input type="text" id="promotionTitle" class="form-control" placeholder="Np. Specjalna oferta wiosenna">
                 </div>
-                <div class="form-group">
-                    <label for="promotionText">Treść promocji:</label>
-                    <textarea id="promotionText" class="form-control" rows="3" placeholder="Opisz szczegóły promocji"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="promotionService">Powiązana usługa (opcjonalne):</label>
-                    <select id="promotionService" class="form-control">
-                        <option value="">-- Wybierz usługę --</option>
-                        <option value="Czyszczenie kostki brukowej">Czyszczenie kostki brukowej</option>
-                        <option value="Impregnacja kostki">Impregnacja kostki</option>
-                        <option value="Czyszczenie pojazdów">Czyszczenie pojazdów</option>
-                    </select>
-                </div>
-                <div id="promotionSuccess" class="success-message" style="display: none;"></div>
-                <button class="admin-btn" onclick="addPromotion()">Dodaj promocję</button>
             </div>
-
-            <div class="admin-section">
-                <h4>Aktywne promocje</h4>
-                <div id="promotionsList" class="promotion-list">
-                    <!-- Promocje będą dodawane dynamicznie -->
-                </div>
-            </div>
-
-            <button class="admin-btn logout" onclick="logout()">Wyloguj</button>
         </div>
     </div>
 
@@ -1390,20 +1432,18 @@
         
         // Modal functions
         function openModal(modalId) {
-            if (modalId === 'modal2') {
-                // Specjalna obsługa dla przyszłej usługi
-                document.getElementById(modalId).style.display = "block";
-                document.body.style.overflow = "hidden";
-            } else {
-                // Standardowa obsługa modalów
-                document.getElementById(modalId).style.display = "block";
-                document.body.style.overflow = "hidden";
-            }
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden";
         }
         
+        function openSocialModal() {
+            document.getElementById('socialModal').style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto"; // Enable scrolling
+            document.body.style.overflow = "auto";
         }
         
         // Close modal when clicking outside of it
@@ -1424,12 +1464,12 @@
         // Dane logowania (w prawdziwej aplikacji powinny być przechowywane bezpiecznie po stronie serwera)
         const ADMIN_CREDENTIALS = {
             username: "admin",
-            password: "EkoClean2023!" // W praktyce użyj silnego hasła
+            password: "BrukRenowacje2023!" // W praktyce użyj silnego hasła
         };
         
         // Klawiszologia do aktywacji panelu
         let keySequence = [];
-        const ACTIVATION_KEYS = ['Control', 'Alt', 'e']; // Ctrl+Alt+E
+        const ACTIVATION_KEYS = ['Control', 'Alt', 'b']; // Ctrl+Alt+B
         
         document.addEventListener('keydown', (e) => {
             if (ACTIVATION_KEYS.includes(e.key)) {
@@ -1496,7 +1536,7 @@
         
         // Promocje - przechowywane w localStorage (w prawdziwej aplikacji powinny być na serwerze)
         function loadPromotions() {
-            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
             promotionsList.innerHTML = '';
             
             if (promotions.length === 0) {
@@ -1537,9 +1577,9 @@
                 return;
             }
             
-            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
             promotions.push({ title, text, service });
-            localStorage.setItem('ekoclean_promotions', JSON.stringify(promotions));
+            localStorage.setItem('brukrenowacje_promotions', JSON.stringify(promotions));
             
             // Wyczyść formularz
             document.getElementById('promotionTitle').value = '';
@@ -1561,16 +1601,16 @@
         }
         
         function removePromotion(index) {
-            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
             if (index >= 0 && index < promotions.length) {
                 promotions.splice(index, 1);
-                localStorage.setItem('ekoclean_promotions', JSON.stringify(promotions));
+                localStorage.setItem('brukrenowacje_promotions', JSON.stringify(promotions));
                 loadPromotions();
             }
         }
         
         function displayPromotions() {
-            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
             promotionContainer.innerHTML = '';
             
             promotions.forEach(promo => {
