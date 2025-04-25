@@ -17,6 +17,7 @@
             --dark: #212529;
             --success: #4bb543;
             --star: #FFD700;
+            --error: #ff3333;
         }
         
         * {
@@ -677,7 +678,178 @@
             color: var(--accent);
             margin-bottom: 1.5rem;
         }
-        
+
+        /* Promocje */
+        .promotion-banner {
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .admin-panel.active {
+            transform: translateX(0);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-header h3 {
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .admin-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .admin-close:hover {
+            color: var(--error);
+        }
+
+        .admin-section {
+            margin-bottom: 25px;
+        }
+
+        .admin-section h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .admin-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .admin-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .admin-btn.logout {
+            background-color: var(--error);
+            margin-top: 20px;
+        }
+
+        .admin-btn.logout:hover {
+            background-color: #cc0000;
+        }
+
+        .promotion-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .promotion-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .promotion-item .promotion-text {
+            flex: 1;
+        }
+
+        .promotion-item .promotion-actions button {
+            background-color: var(--error);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .logged-in-as {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
@@ -709,11 +881,18 @@
                 height: 30px;
                 font-size: 1rem;
             }
+
+            .admin-panel {
+                width: 100%;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Dodane banery promocyjne -->
+    <div id="promotionContainer"></div>
+
     <header>
         <h1>EkoClean Ostrzeszów</h1>
         <p>Profesjonalne czyszczenie kostki brukowej i pojazdów</p>
@@ -1105,6 +1284,64 @@
         </div>
     </footer>
 
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-header">
+            <h3>Panel Administracyjny</h3>
+            <button class="admin-close" onclick="closeAdminPanel()">&times;</button>
+        </div>
+
+        <div id="loginSection" class="admin-section">
+            <h4>Logowanie</h4>
+            <div class="form-group">
+                <label for="adminUsername">Login:</label>
+                <input type="text" id="adminUsername" class="form-control" placeholder="Wprowadź login">
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Hasło:</label>
+                <input type="password" id="adminPassword" class="form-control" placeholder="Wprowadź hasło">
+            </div>
+            <div id="loginError" class="error-message" style="display: none;"></div>
+            <button class="admin-btn" onclick="login()">Zaloguj</button>
+        </div>
+
+        <div id="adminContent" style="display: none;">
+            <div class="logged-in-as">Zalogowany jako: <span id="loggedInUser"></span></div>
+
+            <div class="admin-section">
+                <h4>Dodaj nową promocję</h4>
+                <div class="form-group">
+                    <label for="promotionTitle">Tytuł promocji:</label>
+                    <input type="text" id="promotionTitle" class="form-control" placeholder="Np. Specjalna oferta wiosenna">
+                </div>
+                <div class="form-group">
+                    <label for="promotionText">Treść promocji:</label>
+                    <textarea id="promotionText" class="form-control" rows="3" placeholder="Opisz szczegóły promocji"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="promotionService">Powiązana usługa (opcjonalne):</label>
+                    <select id="promotionService" class="form-control">
+                        <option value="">-- Wybierz usługę --</option>
+                        <option value="Czyszczenie kostki brukowej">Czyszczenie kostki brukowej</option>
+                        <option value="Impregnacja kostki">Impregnacja kostki</option>
+                        <option value="Czyszczenie pojazdów">Czyszczenie pojazdów</option>
+                    </select>
+                </div>
+                <div id="promotionSuccess" class="success-message" style="display: none;"></div>
+                <button class="admin-btn" onclick="addPromotion()">Dodaj promocję</button>
+            </div>
+
+            <div class="admin-section">
+                <h4>Aktywne promocje</h4>
+                <div id="promotionsList" class="promotion-list">
+                    <!-- Promocje będą dodawane dynamicznie -->
+                </div>
+            </div>
+
+            <button class="admin-btn logout" onclick="logout()">Wyloguj</button>
+        </div>
+    </div>
+
     <script>
         // Hero Slider
         let currentHeroSlide = 0;
@@ -1176,6 +1413,180 @@
                 document.body.style.overflow = "auto";
             }
         }
+
+        // Admin Panel Functions
+        const adminPanel = document.getElementById('adminPanel');
+        const loginSection = document.getElementById('loginSection');
+        const adminContent = document.getElementById('adminContent');
+        const promotionsList = document.getElementById('promotionsList');
+        const promotionContainer = document.getElementById('promotionContainer');
+        
+        // Dane logowania (w prawdziwej aplikacji powinny być przechowywane bezpiecznie po stronie serwera)
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "EkoClean2023!" // W praktyce użyj silnego hasła
+        };
+        
+        // Klawiszologia do aktywacji panelu
+        let keySequence = [];
+        const ACTIVATION_KEYS = ['Control', 'Alt', 'e']; // Ctrl+Alt+E
+        
+        document.addEventListener('keydown', (e) => {
+            if (ACTIVATION_KEYS.includes(e.key)) {
+                if (!keySequence.includes(e.key)) {
+                    keySequence.push(e.key);
+                }
+                
+                // Sprawdź czy wszystkie wymagane klawisze są wciśnięte
+                if (ACTIVATION_KEYS.every(key => keySequence.includes(key))) {
+                    openAdminPanel();
+                    keySequence = [];
+                }
+            }
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            keySequence = keySequence.filter(key => key !== e.key);
+        });
+        
+        function openAdminPanel() {
+            adminPanel.style.display = 'block';
+            setTimeout(() => {
+                adminPanel.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeAdminPanel() {
+            adminPanel.classList.remove('active');
+            setTimeout(() => {
+                adminPanel.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+        
+        function login() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorElement = document.getElementById('loginError');
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                // Logowanie udane
+                loginSection.style.display = 'none';
+                adminContent.style.display = 'block';
+                document.getElementById('loggedInUser').textContent = username;
+                errorElement.style.display = 'none';
+                
+                // Załaduj istniejące promocje
+                loadPromotions();
+            } else {
+                // Błąd logowania
+                errorElement.textContent = 'Nieprawidłowy login lub hasło';
+                errorElement.style.display = 'block';
+            }
+        }
+        
+        function logout() {
+            loginSection.style.display = 'block';
+            adminContent.style.display = 'none';
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        }
+        
+        // Promocje - przechowywane w localStorage (w prawdziwej aplikacji powinny być na serwerze)
+        function loadPromotions() {
+            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            promotionsList.innerHTML = '';
+            
+            if (promotions.length === 0) {
+                promotionsList.innerHTML = '<p>Brak aktywnych promocji</p>';
+                return;
+            }
+            
+            promotions.forEach((promo, index) => {
+                const promoItem = document.createElement('div');
+                promoItem.className = 'promotion-item';
+                promoItem.innerHTML = `
+                    <div class="promotion-text">
+                        <strong>${promo.title}</strong><br>
+                        ${promo.text}
+                        ${promo.service ? `<br><small>Usługa: ${promo.service}</small>` : ''}
+                    </div>
+                    <div class="promotion-actions">
+                        <button onclick="removePromotion(${index})">Usuń</button>
+                    </div>
+                `;
+                promotionsList.appendChild(promoItem);
+            });
+            
+            // Wyświetl promocje na stronie
+            displayPromotions();
+        }
+        
+        function addPromotion() {
+            const title = document.getElementById('promotionTitle').value.trim();
+            const text = document.getElementById('promotionText').value.trim();
+            const service = document.getElementById('promotionService').value;
+            const successElement = document.getElementById('promotionSuccess');
+            
+            if (!title || !text) {
+                successElement.textContent = 'Tytuł i treść promocji są wymagane';
+                successElement.style.display = 'block';
+                successElement.className = 'error-message';
+                return;
+            }
+            
+            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            promotions.push({ title, text, service });
+            localStorage.setItem('ekoclean_promotions', JSON.stringify(promotions));
+            
+            // Wyczyść formularz
+            document.getElementById('promotionTitle').value = '';
+            document.getElementById('promotionText').value = '';
+            document.getElementById('promotionService').value = '';
+            
+            // Pokaż sukces
+            successElement.textContent = 'Promocja została dodana!';
+            successElement.style.display = 'block';
+            successElement.className = 'success-message';
+            
+            // Odśwież listę promocji
+            loadPromotions();
+            
+            // Ukryj komunikat po 3 sekundach
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+        
+        function removePromotion(index) {
+            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            if (index >= 0 && index < promotions.length) {
+                promotions.splice(index, 1);
+                localStorage.setItem('ekoclean_promotions', JSON.stringify(promotions));
+                loadPromotions();
+            }
+        }
+        
+        function displayPromotions() {
+            const promotions = JSON.parse(localStorage.getItem('ekoclean_promotions')) || [];
+            promotionContainer.innerHTML = '';
+            
+            promotions.forEach(promo => {
+                const promoBanner = document.createElement('div');
+                promoBanner.className = 'promotion-banner';
+                promoBanner.innerHTML = `
+                    <h3>${promo.title}</h3>
+                    <p>${promo.text}</p>
+                    ${promo.service ? `<p><strong>Usługa: ${promo.service}</strong></p>` : ''}
+                `;
+                promotionContainer.appendChild(promoBanner);
+            });
+        }
+        
+        // Załaduj promocje przy starcie strony
+        displayPromotions();
     </script>
 </body>
 </html>
