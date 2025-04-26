@@ -981,7 +981,7 @@
                     </div>
                 </div>
                 
-                <div class="service-card future-service" onclick="openModal('modal2')">
+                <div class="service-card" onclick="openModal('modal2')">
                     <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Impregnacja kostki brukowej">
                     <div class="service-card-content">
                         <h3>Impregnacja kostki</h3>
@@ -990,6 +990,19 @@
                             <li>Głęboka penetracja powierzchni</li>
                             <li>Ochrona przed wilgocią i mrozem</li>
                             <li>Zapobieganie powstawaniu mchów</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card" onclick="openModal('modal4')">
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Piaskowanie kostki brukowej">
+                    <div class="service-card-content">
+                        <h3>Piaskowanie kostki</h3>
+                        <p>Profesjonalne piaskowanie (fugowanie) kostki brukowej w celu wypełnienia szczelin i zabezpieczenia powierzchni.</p>
+                        <ul class="service-features">
+                            <li>Wypełnianie szczelin między kostkami</li>
+                            <li>Zabezpieczenie przed chwastami</li>
+                            <li>Poprawa stabilności nawierzchni</li>
                         </ul>
                     </div>
                 </div>
@@ -1191,7 +1204,8 @@
                 <p>Kompleksowe czyszczenie kostki brukowej z zastosowaniem ekologicznych środków czyszczących.</p>
             </div>
             <div class="modal-price">
-                Wycena indywidualna na miejscu
+                Od 10 zł/m² (mycie wysokociśnieniowe)<br>
+                Od 15 zł/m² (z użyciem chemii)
             </div>
             <div class="modal-images">
                 <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Przykład czyszczenia kostki">
@@ -1212,15 +1226,56 @@
     </div>
     
     <div id="modal2" class="modal">
-        <div class="modal-content future-modal">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <div class="future-icon">
-                <i class="fas fa-clock"></i>
+            <div class="modal-header">
+                <h3>Impregnacja kostki brukowej</h3>
+                <p>Profesjonalna impregnacja kostki brukowej, która zabezpiecza przed wnikaniem wody, olejów i zabrudzeń.</p>
             </div>
-            <h3>Usługa dostępna wkrótce!</h3>
-            <p>Impregnacja kostki brukowej będzie dostępna w przyszłości. Już teraz możesz skorzystać z naszych innych usług.</p>
+            <div class="modal-price">
+                10 zł/m² (impregnacja )
+            </div>
+            <div class="modal-images">
+                <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Przykład impregnacji kostki">
+                <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Efekt impregnacji">
+                <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Narzędzia do impregnacji">
+            </div>
+            <ul class="service-features">
+                <li>Głęboka penetracja powierzchni kostki</li>
+                <li>Ochrona przed wnikaniem wody i wilgoci</li>
+                <li>Zabezpieczenie przed plamami z olejów i smarów</li>
+                <li>Zapobieganie powstawaniu mchów i porostów</li>
+                <li>Zwiększenie trwałości i odporności na mróz</li>
+            </ul>
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="#services" class="btn" onclick="closeModal('modal2')">Zobacz inne usługi</a>
+                <a href="tel:+48123456789" class="btn"><i class="fas fa-phone"></i> Zamów usługę</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <div class="modal-header">
+                <h3>Piaskowanie kostki brukowej</h3>
+                <p>Profesjonalne piaskowanie (fugowanie) kostki brukowej w celu wypełnienia szczelin i zabezpieczenia powierzchni.</p>
+            </div>
+            <div class="modal-price">
+                5 zł/m² (piaskowanie/fugowanie)
+            </div>
+            <div class="modal-images">
+                <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Przykład piaskowania kostki">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Efekt piaskowania">
+            </div>
+            <ul class="service-features">
+                <li>Wypełnianie szczelin między kostkami specjalnym piaskiem</li>
+                <li>Zabezpieczenie przed wzrostem chwastów</li>
+                <li>Poprawa stabilności całej nawierzchni</li>
+                <li>Zapobieganie wypłukiwaniu podbudowy</li>
+                <li>Profesjonalne wykonanie</li>
+            </ul>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="tel:+48123456789" class="btn"><i class="fas fa-phone"></i> Zamów usługę</a>
             </div>
         </div>
     </div>
@@ -1331,6 +1386,7 @@
                 <ul>
                     <li><a href="#" onclick="openModal('modal1'); return false;">Czyszczenie kostki brukowej</a></li>
                     <li><a href="#" onclick="openModal('modal2'); return false;">Impregnacja kostki</a></li>
+                    <li><a href="#" onclick="openModal('modal4'); return false;">Piaskowanie kostki</a></li>
                     <li><a href="#" onclick="openModal('modal3'); return false;">Czyszczenie pojazdów</a></li>
                 </ul>
             </div>
