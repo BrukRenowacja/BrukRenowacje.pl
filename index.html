@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrukRenowacje | Profesjonalne czyszczenie kostki brukowej</title>
+    <title>BrukRenowacja | Profesjonalne czyszczenie kostki brukowej</title>
     <meta name="description" content="Profesjonalne czyszczenie kostki brukowej w Ostrzeszowie i okolicy. Ekologiczne metody, najwyższa jakość usług.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -933,7 +933,7 @@
     <div id="promotionContainer"></div>
 
     <header>
-        <h1>BrukRenowacje</h1>
+        <h1>BrukRenowacja</h1>
         <p>Profesjonalne czyszczenie kostki brukowej i pojazdów</p>
     </header>
     
@@ -1189,7 +1189,7 @@
                 <div class="contact-card">
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>Obszar działania</h3>
-                    <p>Ostrzeszów i okolice (do 40 km)</p>
+                    <p>Ostrzeszów i okolice (do 20 km)</p>
                     <p>Pracujemy w całym powiecie</p>
                 </div>
             </div>
@@ -1373,7 +1373,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>BrukRenowacje</h3>
+                <h3>BrukRenowacja</h3>
                 <p>Profesjonalne usługi czyszczenia kostki brukowej i pojazdów w Ostrzeszowie i okolicach.</p>
                 <div class="social-links">
                     <a href="#https://www.facebook.com/profile.php?id=61575717300546"><i class="fab fa-facebook-f"></i></a>
@@ -1404,7 +1404,7 @@
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 BrukRenowacje. Wszelkie prawa zastrzeżone.</p>
+            <p>&copy; 2025 BrukRenowacja. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
@@ -1522,7 +1522,7 @@
         // Dane logowania (w prawdziwej aplikacji powinny być przechowywane bezpiecznie po stronie serwera)
         const ADMIN_CREDENTIALS = {
             username: "admin",
-            password: "BrukRenowacje2023!" // W praktyce użyj silnego hasła
+            password: "BrukRenowacja2023!" // W praktyce użyj silnego hasła
         };
         
         // Klawiszologia do aktywacji panelu
@@ -1594,7 +1594,7 @@
         
         // Promocje - przechowywane w localStorage (w prawdziwej aplikacji powinny być na serwerze)
         function loadPromotions() {
-            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacja_promotions')) || [];
             promotionsList.innerHTML = '';
             
             if (promotions.length === 0) {
@@ -1635,7 +1635,7 @@
                 return;
             }
             
-            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacja_promotions')) || [];
             promotions.push({ title, text, service });
             localStorage.setItem('brukrenowacje_promotions', JSON.stringify(promotions));
             
@@ -1659,7 +1659,7 @@
         }
         
         function removePromotion(index) {
-            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacja_promotions')) || [];
             if (index >= 0 && index < promotions.length) {
                 promotions.splice(index, 1);
                 localStorage.setItem('brukrenowacje_promotions', JSON.stringify(promotions));
@@ -1668,7 +1668,7 @@
         }
         
         function displayPromotions() {
-            const promotions = JSON.parse(localStorage.getItem('brukrenowacje_promotions')) || [];
+            const promotions = JSON.parse(localStorage.getItem('brukrenowacja_promotions')) || [];
             promotionContainer.innerHTML = '';
             
             promotions.forEach(promo => {
